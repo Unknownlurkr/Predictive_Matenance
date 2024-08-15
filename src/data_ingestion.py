@@ -1,8 +1,17 @@
 import pandas as pd
 from kafka import KafkaConsumer
 from sqlalchemy import create_engine
+from hdfs import InsecureClient
+from config import KAFKA_TOPIC, KAFKA_BOOTSTRAP_SERVERS, HDFS_URL
 
 def ingest_data():
+    consumerV1 = KafkaConsumer(KAFKA_TOPIC, bootstrap_servers=KAFKA_BOOTSTRAP_SERVERS)
+    hdfs_client = InsecureClient(HDFS_URL, user='hdfs') # predictive_mat_csv in file
+    
+    for message in consumerV1:
+        data = message.value.decode('utf-8')
+        hdfs_client.write('/data/sensor_data.txt', data, append=True)
+    
     # Simulating Kafka Consumer
     consumer = KafkaConsumer('sensor_data_topic', bootstrap_servers=['localhost:9092'])
     

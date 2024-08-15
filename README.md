@@ -25,6 +25,25 @@ This project aims to implement a real-time predictive maintenance system for man
 - `src/`: Contains Python scripts for data ingestion, processing, model training, prediction, and visualization.
 - `requirements.txt`: List of required Python packages.
 
+```bash
+predictive_maintenance/
+│
+├── data/
+│   └── sample_data.csv  # Small sample dataset for local testing
+│
+├── src/
+│   ├── data_ingestion.py
+│   ├── data_processing.py
+│   ├── model_training.py
+│   ├── model_prediction.py
+│   ├── app.py
+│   ├── visualization.py
+│   └── config.py  # Configuration file for connection settings
+│
+├── requirements.txt
+└── README.md
+```
+
 ## Installation
 1. Clone the repository:
     ```bash
@@ -35,7 +54,7 @@ This project aims to implement a real-time predictive maintenance system for man
 2. Create a virtual environment and install dependencies:
     ```bash
     python -m venv venv
-    source venv/bin/activate  # On Windows use `venv\Scripts\activate`
+    source `venv\Scripts\activate`  # use venv\Scripts\activate otherwise
     pip install -r requirements.txt
     ```
 

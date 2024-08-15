@@ -1,7 +1,15 @@
 import pandas as pd
 from sqlalchemy import create_engine
+from pyspark.sql import SparkSession
+from config import HDFS_URL, SPARK_MASTER
 
 def process_data():
+    spark = SparkSession.builder.master(SPARK_MASTER).appName("PredictiveMaintenance").getOrCreate()
+    df = spark.read.text(f'{HDFS_URL}/data/sensor_data.txt')
+    
+    # Sample processing (parsing, filtering, etc.)
+    processed_df = df.selectExpr("split(value, ',')[0] as timestamp", "split(value, ',')[1] as vibration")
+    processed_df.write.csv(f'{HDFS_URL}/processed_data.csv')
     engine = create_engine('postgresql://user:password@localhost/predictive_maintenance')
     sensor_data = pd.read_sql('sensor_data', engine)
     

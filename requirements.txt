@@ -5,3 +5,6 @@ flask
 plotly
 psycopg2
 kafka-python
+hdfs
+pyspark
+dash
