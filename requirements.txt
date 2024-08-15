@@ -1,0 +1,7 @@
+pandas
+scikit-learn
+tensorflow
+flask
+plotly
+psycopg2
+kafka-python
