@@ -26,12 +26,22 @@ def update_graph(n):
     return fig
 
 def visualize_data():
+    """
+    Function to visualize the sensor data using Plotly.
+    """
+    
+    # Creating a PostgreSQL engine connection
     engine = create_engine('postgresql://user:password@localhost/predictive_maintenance')
+    
+    # Read processed data from PostgreSQL
     data = pd.read_sql('processed_data', engine)
     
+    # Create a line plot for 'vibration' over time
     fig = px.line(data, x='timestamp', y='vibration', title='Vibration Over Time')
+    
+    # Show the plot in a browser
     fig.show()
 
 if __name__ == "__main__":
     visualize_data()
-    app.run_server(debug=True)
+    app.run_server(debug=False)
